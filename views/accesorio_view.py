@@ -58,7 +58,7 @@ def accesorio_editar(id):
     administrador = additional_info.get('administrador')
 
     if not administrador:
-        return jsonify({"Mensaje": "No está autorizado para editar marca"}), 403
+        return jsonify({"Mensaje": "No está autorizado para editar accesorio"}), 403
 
     accesorio = Accesorio.query.get_or_404(id)
 
@@ -85,9 +85,9 @@ def accesorio_editar(id):
 
     return jsonify({'accesorio': accesorio_serializada})
 
-@accesorio_bp.route('/accesorio/<int:id>/delete', methods=['DELETE'])
+@accesorio_bp.route('/accesorio/<int:id>/borrar', methods=['DELETE'])
 @jwt_required()
-def delete_accesorio(id):
+def borrar_accesorio(id):
     additional_data = get_jwt()
     administrador = additional_data.get('administrador')
 

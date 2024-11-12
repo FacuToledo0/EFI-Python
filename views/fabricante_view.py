@@ -95,9 +95,9 @@ def fabricante_editar(id):
 
     return jsonify({'fabricante': fabricante_serializada})
 
-@fabricante_bp.route('/fabricante/<int:id>/delete', methods=['DELETE'])
+@fabricante_bp.route('/fabricante/<int:id>/borrar', methods=['DELETE'])
 @jwt_required()
-def delete_fabricante(id):
+def borrar_fabricante(id):
     additional_data = get_jwt()
     administrador = additional_data.get('administrador')
 

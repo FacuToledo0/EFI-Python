@@ -26,35 +26,29 @@ def modelos():
     modelo_service = ModeloService(ModeloRepositories())
 
     if request.method == 'POST':
-        data = request.get_json()  # Obtener los datos en formato JSON
-        nombre = data.get('nombre')  # Obtener el nombre de la marca desde el cuerpo de la solicitud
+        data = request.get_json()  
+        nombre = data.get('nombre')  
 
         if not nombre:
-            return jsonify({"Mensaje": "El nombre de la marca es obligatorio"}), 400
-
-        print(f"Creando nueva marca con nombre: {nombre}")  # Log de creación
+            return jsonify({"Mensaje": "El nombre del modelo es obligatorio"}), 400
 
         nuevo_modelo = modelo_service.create(nombre)
         modelo_schema = ModeloSchema()
 
-        # Devolver directamente una respuesta JSON en lugar de hacer una redirección
         return jsonify({
-            "Mensaje": "Marca creada exitosamente",
+            "Mensaje": "Modelo creado exitosamente",
             "modelo": modelo_schema.dump(nuevo_modelo)
         }), 201
 
 @modelo_bp.route("/modelo_list", methods=['GET'])
 @jwt_required()
 def modelos_list():
-    # Obtener todas las marcas de la base de datos
     modelo_service = ModeloService(ModeloRepositories())
     modelos = modelo_service.get_all()
 
-    # Serializar las marcas obtenidas
     modelo_schema = ModeloSchema(many=True)
     modelos_serializadas = modelo_schema.dump(modelos)
 
-    # Retornar la lista de marcas como respuesta JSON
     return jsonify({'modelos': modelos_serializadas})
 
 
