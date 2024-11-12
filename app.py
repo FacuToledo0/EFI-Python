@@ -5,6 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_marshmallow import Marshmallow
+from flask_cors import CORS  
+
 
 # Cargar variables de entorno antes de utilizarlas
 load_dotenv()
@@ -21,3 +23,5 @@ ma = Marshmallow(app)
 
 from views import register_bp
 register_bp(app)
+
+cors = CORS(app, resources={r"/*": {"origins": "*"}})

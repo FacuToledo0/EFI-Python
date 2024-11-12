@@ -58,14 +58,15 @@ class ModeloForm(FlaskForm):
 
 
 
-# class TelefonoForm(FlaskForm):
-#     modelo = StringField('Modelo', validators=[DataRequired()])
-#     anio_fabricacion = IntegerField('Año de Fabricación', validators=[DataRequired()])
-#     precio = DecimalField('Precio', validators=[DataRequired()])
-#     accesorio = SelectField('Accesorio', coerce=int)
-#     marca = SelectField('Marca', coerce=int)
-#     tipo = SelectField('Tipo', coerce=int)
-#     submit = SubmitField('Agregar')
+class EquipoForm(FlaskForm):
+    anio_fabricacion = IntegerField('Año de Fabricación', validators=[DataRequired()])
+    precio = DecimalField('Precio', validators=[DataRequired()])
+    marca = SelectField('Marca', coerce=int)
+    modelo = StringField('Modelo', validators=[DataRequired()])
+    proveedor = SelectField('Proveedor', coerce=int)
+    fabricante = SelectField('Fabricante', coerce=int)
+    accesorio = SelectField('Accesorio', coerce=int)
+    submit = SubmitField('Agregar')
     
 
 class AccesorioForm(FlaskForm):
