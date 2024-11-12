@@ -64,7 +64,9 @@ class User(db.Model):
     is_admin = db.Column(db.Boolean)
 
     def to_dict(self):
-        return dict(
-            username=self.username,
-            password=self.password_hash
-        )
+        return {
+            'id' : self.id,
+            'username': self.username,
+            'password': self.password_hash,
+            'is_admin': 1 if self.is_admin else 0
+        }

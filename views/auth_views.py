@@ -47,8 +47,8 @@ def users ():
     if request.method == 'POST':
         if administrador is True:
             data = request.get_json()
-            username = data.get('usuario')
-            password = data.get('contrasenia')
+            username = data.get('username')
+            password = data.get('password')
             is_admin = data.get('is_admin', False)
 
             try:
